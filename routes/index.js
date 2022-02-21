@@ -11,6 +11,7 @@ const urlEncode = app.use(bodyParser.urlencoded({
 
 router.get('/read', cntrl.getReadUser);
 router.post('/adduser', urlEncode, cntrl.postUser);
+router.post('/searchuser', urlEncode, cntrl.searchUser);
 router.get('/read/:id', cntrl.getReadUserById);
 
 export default router;

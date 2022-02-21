@@ -27,6 +27,17 @@ const user = {
         });
     },
 
+    findUserByname(name) {
+
+        return new Promise((resolve, reject) => {
+            db.query(`SELECT id, nama, alamat, id_jenis_kelamin FROM learnode.user WHERE nama LIKE '%${name}%';`, "",
+                (err, response) => {
+                    if (!err) resolve(response);
+                    else reject(err);
+                });
+        });
+    },
+
     addUser(data) {
         console.log(data);
         return new Promise((resolve, reject) => {

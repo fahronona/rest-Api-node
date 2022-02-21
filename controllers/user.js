@@ -67,4 +67,36 @@ const postUser = async(req, res) => {
 
 }
 
-export default { getReadUserById, getReadUser, postUser };
+const searchUser = async(req, res) => {
+    const body = req.body.search;
+    const response = await User.findUserByname(body);
+    if (body == undefined) {
+        res.status(404).send("search is required");
+    } else {
+
+
+        if (response.length != 0) {
+
+            const resJson = {
+                status_code: 200,
+                status_name: "Found",
+                data: response
+            }
+            res.status(200).send(resJson);
+        } else {
+
+            const resJson = {
+                status_code: 200,
+                status_name: "Not Found",
+                data: response
+
+            }
+            res.status(200).send(resJson);
+        }
+
+
+    }
+
+}
+
+export default { getReadUserById, getReadUser, postUser, searchUser };
